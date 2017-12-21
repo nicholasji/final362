@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css?family=Poiret+One');
+
+body {
+    color: #4D5068;
+    font-family: sans-serif;
+    background-color: #F5F7F9;
+}
+h2 {
+    font-family: 'Poiret One';
+    text-align: center;
+    font-size: 2em;
+}
+tr {
+    background-color: #0099FF;
+    color: white;
+}
+td {
+    background-color: white;
+    color: #4D5068;
+}
+p {
+    background-color: #4C5152;
+    color: white;
+}
+a {
+    color: #027F6B;
+}
+a:hover {
+    color: #329893;
+}
+input[type="submit"] {
+    background-color: #6371C5;
+    border: none;
+    color: white;
+    border-radius: 2px;
+    font-size: 16px;
+}
