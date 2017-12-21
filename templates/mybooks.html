@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Book Catalogue</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/mybooks.css')}}"> 
+    </head>
+    <body>
+        <center><h3>My Catalogue of Books</h3></center>
+        {% if error %}<p class="error"><strong>Error:</strong>{{ error }}</p>{% endif %}
+        {% if books %}
+        <table>
+            <thead>Books</thead>
+            <tbody>
+                <tr>
+                    <th>Thumbnail</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Page Count</th>
+                    <th>Average Rating</th>
+                </tr>
+                {% for book in books %}
+                <tr>
+                    <td><img src={{ book.thumbnail }}></td>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.pgcnt }}</td>
+                    <td>{{ book.avgrating }}</td>
+                    <td><a href={{ url_for('delete_book', title=book.title, author=book.author, pageCount=book.pgcnt, averageRating=book.avgrating, thumbnail=book.thumbnail) }}>Delete</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>There are no saved books.</p>
+        {% endif %}
+        <a href="/searchbooks">Search Books</a>
+	<a href="{{ url_for('logout') }}">Log Out</a>
+	</body>
+</html>

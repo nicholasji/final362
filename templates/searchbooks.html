@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Add Books</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/searchbooks.css')}}"> 
+    </head>
+    <body>
+        <center><h3>Search for Books</h3></center>
+        {% if error %}<p class="error"><strong>Error:</strong>{{ error }}</p>{% endif %}
+        <form action="/searchbooks" method="post">
+            ISBN #:
+            <input type="text" name="isbnnumber">
+            <input type="submit" value="Search">
+        </form>
+        {% if searchresults %}
+        <br>
+        <table>
+            <thead>Results</thead>
+            <tbody>
+                <tr>
+                    <th>Thumbnail</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Page Count</th>
+                    <th>Average Rating</th>
+                    <th></th>
+                </tr>
+                {% for result in searchresults %}
+                <tr>
+                    <td><img src={{ result.thumbnail }}></td>
+                    <td>{{ result.title }}</td>
+                    <td>{{ result.author }}</td>
+                    <td>{{ result.pageCount }}</td>
+                    <td>{{ result.averageRating }}</td>
+                    <td><a href={{ url_for('add_book', title=result.title, author=result.author, pageCount=result.pageCount, averageRating=result.averageRating, thumbnail=result.thumbnail) }}>Add</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+	<a href="{{ url_for('logout') }}">Log Out</a>
+
+    </body>
+</html>
